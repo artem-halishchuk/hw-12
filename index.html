@@ -117,9 +117,13 @@
 </div>
 
 <div class="contactBook">
-	<h2 class="contactBook__title contactBook-title">
-		Пользователь <span class="contactBook-title__user">User</span>
-	</h2>
+	<diw class="contactBook__header contactBook-header">
+		<h2 class="contactBook-header__title">
+			Пользователь <span class="contactBook-header__user">User</span>
+		</h2>
+		<button class="contactBook-header__exit">Выход</button>
+	</diw>
+
 
 	<div class="contactBook__list contactBook-list">
 		<h3 class="contactBook-list__title">
@@ -135,14 +139,14 @@
 	</div>
 
 	<div class="contactBook__about contactBook-about">
-		<p class="contactBook-about__name contactBook-about-name">
-			Имя: <span class="contactBook-about-name__value">Valera</span>
+		<p class="contactBook-about__name">
+			Имя: <span class="contactBook-about__value">Valera</span>
 		</p>
-		<p class="contactBook-about__telephone contactBook-about-telephone">
-			Телефон: <span class="contactBook-about-telephone__value">+380 95 839 87 98</span>
+		<p class="contactBook-about__telephone">
+			Телефон: <a class="contactBook-about__value-phone" href="tel:+74951111111">+7 (495) 111-11-11</a>
 		</p>
-		<p class="contactBook-about__email contactBook-about-email">
-			Почта: <span class="contactBook-about-email__value">email@gmail.com</span>
+		<p class="contactBook-about__email">
+			Почта: <a class="contactBook-about__value-mail" href="mailto:example@gmail.com">example@gmail.com</a>
 		</p>
 	</div>
 
@@ -151,26 +155,26 @@
 			<h3 class="contactBook-add__title">
 				Добавить контакт
 			</h3>
-			<div class="contactBook-add__control contactBook-add-control">
-				<label for="contactBook-add-control__name">Имя</label>
-				<input type="text" class="contactBook-add-control__name" id="contactBook-add-control__name" value="Venia">
+			<div class="contactBook-add__control">
+				<label for="contactBook-add__name">Имя</label>
+				<input type="text" class="contactBook-add__name" id="contactBook-add__name" value="Venia">
 			</div>
-			<div class="contactBook-add__control contactBook-add-control">
-				<select class="select contactBook-add-control__select">
+			<div class="contactBook-add__control">
+				<select class="select contactBook-add__select">
 					<option value="phone">телефон</option>
 					<option value="email">электронная почта</option>
 				</select>
 			</div>
-			<div class="contactBook-add__control contactBook-add-control">
-				<label for="contactBook-add-control__telephone">телефон</label>
-				<input type="text" class="contactBook-add-control__telephone" id="contactBook-add-control__telephone" value="380958398798">
+			<div class="contactBook-add__control">
+				<label for="contactBook-add__phone">телефон</label>
+				<input type="text" class="contactBook-add__phone" id="contactBook-add__phone" value="380958398798">
 			</div>
-			<div class="contactBook-add__control contactBook-add-control">
-				<label for="contactBook-add-control__email">электронная почта</label>
-				<input type="text" class="contactBook-add-control__email" id="contactBook-add-control__email" value="mail@gmail.com">
+			<div class="contactBook-add__control">
+				<label for="contactBook-add__mail">электронная почта</label>
+				<input type="text" class="contactBook-add__mail" id="contactBook-add__mail" value="mail@gmail.com">
 			</div>
-			<div class="contactBook-add__control contactBook-add-control">
-				<button class="btn contactBook-add-control__btn">add</button>
+			<div class="contactBook-add__control">
+				<button class="btn contactBook-add__btn">Добавить контакт</button>
 			</div>
 		</div>
 	</div>

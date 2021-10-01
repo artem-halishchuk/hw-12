@@ -3,7 +3,7 @@ class BookServices {
         this.token = sessionStorage.getItem('token');
     }
     userName() {
-        document.querySelector('.contactBook-title__user').innerHTML = sessionStorage.getItem('userName');
+        document.querySelector('.contactBook-header__user').innerHTML = sessionStorage.getItem('userName');
     }
     getAllUsers() {
         return fetch(BookServices.BASE_URL + 'users2', {
