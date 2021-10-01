@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Document</title>
+
+	<script src="scripts/services/user-services.js"></script>
+	<script src="scripts/services/book-services.js"></script>
+	<script src="scripts/models/user.js"></script>
+	<script src="scripts/components/register-form.js"></script>
+	<script src="scripts/components/login-form.js"></script>
+	<script src="scripts/components/UnauthorizedScreenComponent.js"></script>
+	<script src="scripts/components/LoginScreenComponent.js"></script>
+	<script src="scripts/script.js"></script>
+	<script src="scripts/components/list-contacts.js"></script>
+	<script>
+		let userServices = new UserServices();
+		userServices.getAll().then(users => console.log(users));
+		let loginScreen = new LoginScreenComponent('.contactBook');
+		//loginScreen.hidden(true);
+
+		let unauthorizedScreen = new UnauthorizedScreenComponent('.unauthorized-screen');
+
+
+
+		let registerForm = new RegisterForm('.register-form', userServices);
+		registerForm.onRegister = () => {
+			alert('Register status OK');
+		};
+
+		let loginForm = new LoginForm('.login-form', userServices);
+		let bookServices = new BookServices();
+
+
+		//loginScreen.hidden(true);
+
+		loginForm.onLogin = () => {
+			loginScreen.show(true);
+			//alert('Login OK, it is handler');
+			unauthorizedScreen.hidden(true);
+
+			bookServices.userName();
+
+			let contact = {
+				type: 'email',
+				value: 'Ivan@gmail.com',
+				name: 'Ivan',
+			}
+			// bookServices.addContact(contact).then(response => {
+			// 	if(response.status === 'error') alert('no added contact');
+			// 	else alert('contact added ok');
+			// });
+
+			bookServices.getContacts()
+					.then(request => request.contacts)
+					.then(contacts => contacts.map(contact => console.log(contact.name)));
+
+			//bookServices.getAll();
+		};
+
+
+	</script>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+	<h1 class="header__logo">
+		MyPhoneBook
+	</h1>
+</header>
+<div class="unauthorized-screen">
+	<div class="row">
+		<div class="row__col">
+			<div class="form register-form">
+				<div class="form__header">Register</div>
+				<div class="form__body">
+					<div class="form__control">
+						<label for="register_user_login">Login</label>
+						<input type="text" class="input" id="register_user_login" value="">
+					</div>
+					<div class="form__control">
+						<label for="register_user_password">Password</label>
+						<input type="text" class="input" id="register_user_password" value="1111">
+					</div>
+					<div class="form__control">
+						<label for="register_user_born">Birth day</label>
+						<input type="text" class="input" id="register_user_born" value="2000-01-01">
+					</div>
+					<div class="form__control">
+						<button class="btn btn_success">Register</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row__col">
+			<div class="form">
+				<div class="form login-form">
+					<div class="form__header">Login</div>
+					<div class="form__body">
+						<div class="form__control">
+							<label for="login_user_login">Login</label>
+							<input type="text" class="input" id="login_user_login" value="12">
+						</div>
+						<div class="form__control">
+							<label for="login_user_password">Password</label>
+							<input type="text" class="input" id="login_user_password" value="12">
+						</div>
+						<div class="form__control">
+							<button class="btn btn_success">Login</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="contactBook">
+	<h2 class="contactBook__title contactBook-title">
+		Пользователь <span class="contactBook-title__user">User</span>
+	</h2>
+
+	<div class="contactBook__list contactBook-list">
+		<h3 class="contactBook-list__title">
+			Список контактов
+		</h3>
+		<div class="contactBook-list__list">
+			<ul class="contactBook-list__items">
+				<li class="contactBook-list__item">
+					Valera
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="contactBook__about contactBook-about">
+		<p class="contactBook-about__name contactBook-about-name">
+			Имя: <span class="contactBook-about-name__value">Valera</span>
+		</p>
+		<p class="contactBook-about__telephone contactBook-about-telephone">
+			Телефон: <span class="contactBook-about-telephone__value">+380 95 839 87 98</span>
+		</p>
+		<p class="contactBook-about__email contactBook-about-email">
+			Почта: <span class="contactBook-about-email__value">email@gmail.com</span>
+		</p>
+	</div>
+
+	<div class="contactBook__add contactBook-add">
+		<div class="contactBook-add__form">
+			<h3 class="contactBook-add__title">
+				Добавить контакт
+			</h3>
+			<div class="contactBook-add__control contactBook-add-control">
+				<label for="contactBook-add-control__name">Имя</label>
+				<input type="text" class="contactBook-add-control__name" id="contactBook-add-control__name" value="Venia">
+			</div>
+			<div class="contactBook-add__control contactBook-add-control">
+				<select class="select contactBook-add-control__select">
+					<option value="phone">телефон</option>
+					<option value="email">электронная почта</option>
+				</select>
+			</div>
+			<div class="contactBook-add__control contactBook-add-control">
+				<label for="contactBook-add-control__telephone">телефон</label>
+				<input type="text" class="contactBook-add-control__telephone" id="contactBook-add-control__telephone" value="380958398798">
+			</div>
+			<div class="contactBook-add__control contactBook-add-control">
+				<label for="contactBook-add-control__email">электронная почта</label>
+				<input type="text" class="contactBook-add-control__email" id="contactBook-add-control__email" value="mail@gmail.com">
+			</div>
+			<div class="contactBook-add__control contactBook-add-control">
+				<button class="btn contactBook-add-control__btn">add</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

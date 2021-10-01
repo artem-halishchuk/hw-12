@@ -1,0 +1,39 @@
+@import url(reset.css);
+.row {
+    display: flex;
+}
+.row__col {
+    flex-grow: 1;
+    padding: 20px;
+}
+.form {
+    box-shadow: 2px 2px 1px 1px #777;
+}
+.form .form__header {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+.form .form__body {
+
+}
+.unauthorized-screen {
+    /*display: none;*/
+}
+.contactBook {
+    display: none;
+}
+
+.contactBook__title,
+.contactBook__list,
+.contactBook__about,
+.contactBook__add {
+    border: 1px solid black;
+    margin-bottom: 2px;
+}
+.contactBook {
+    display: none;
+    /*display: grid;*/
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
