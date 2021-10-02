@@ -14,6 +14,7 @@
 	<script src="scripts/components/LoginScreenComponent.js"></script>
 	<script src="scripts/script.js"></script>
 	<script src="scripts/components/list-contacts.js"></script>
+	<script src="scripts/components/exit-book.js"></script>
 	<script>
 		let userServices = new UserServices();
 		userServices.getAll().then(users => console.log(users));
@@ -31,30 +32,44 @@
 
 		let loginForm = new LoginForm('.login-form', userServices);
 		let bookServices = new BookServices();
+		let listContacts = new ListContacts('.contactBook-list__items', bookServices.getContacts());
+		let exitBook = new ExitBook('.contactBook-header__exit');
+
 
 
 		//loginScreen.hidden(true);
 
 		loginForm.onLogin = () => {
-			loginScreen.show(true);
+			loginScreen.show('grid');
 			//alert('Login OK, it is handler');
 			unauthorizedScreen.hidden(true);
 
 			bookServices.userName();
+			exitBook.exit();
 
-			let contact = {
-				type: 'email',
-				value: 'Ivan@gmail.com',
-				name: 'Ivan',
-			}
+			// let contact = {
+			// 	type: 'email',
+			// 	value: 'Ivan@gmail.com',
+			// 	name: 'Ivan',
+			// }
+			// let contact = {
+			// 	type: 'phone',
+			// 	value: '4646464',
+			// 	name: 'Ivan',
+			// }
 			// bookServices.addContact(contact).then(response => {
 			// 	if(response.status === 'error') alert('no added contact');
 			// 	else alert('contact added ok');
 			// });
 
+
+			listContacts.showContacts();
 			bookServices.getContacts()
 					.then(request => request.contacts)
-					.then(contacts => contacts.map(contact => console.log(contact.name)));
+					.then(contacts => contacts.map(contact => {
+						console.log('contacts');
+						console.log(contact)
+					}));
 
 			//bookServices.getAll();
 		};
@@ -131,23 +146,26 @@
 		</h3>
 		<div class="contactBook-list__list">
 			<ul class="contactBook-list__items">
-				<li class="contactBook-list__item">
-					Valera
+				<li class="contactBook-list__item contactBook-item">
+					<button class="contactBook-item__button"></button>
 				</li>
 			</ul>
 		</div>
 	</div>
 
 	<div class="contactBook__about contactBook-about">
-		<p class="contactBook-about__name">
-			Имя: <span class="contactBook-about__value">Valera</span>
-		</p>
-		<p class="contactBook-about__telephone">
-			Телефон: <a class="contactBook-about__value-phone" href="tel:+74951111111">+7 (495) 111-11-11</a>
-		</p>
-		<p class="contactBook-about__email">
-			Почта: <a class="contactBook-about__value-mail" href="mailto:example@gmail.com">example@gmail.com</a>
-		</p>
+		<div class="contactBook-about__content">
+			<p class="contactBook-content__name">
+				Имя: <span>Valera</span>
+			</p>
+			<p class="contactBook-content__telephone">
+				Телефон: <a href="tel:+74951111111">+7 (495) 111-11-11</a>
+			</p>
+			<p class="contactBook-content__email">
+				Почта: <a href="mailto:example@gmail.com">example@gmail.com</a>
+			</p>
+		</div>		
+		<button class="contactBook-about__exit">Закрыть</button>
 	</div>
 
 	<div class="contactBook__add contactBook-add">

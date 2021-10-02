@@ -14,6 +14,6 @@ class LoginScreenComponent {
         if(a) this.container.style.display = 'none';
     }
     show(a) {
-        if(a) this.container.style.display = 'block';
+        if(a) this.container.style.display = a;
     }
 }

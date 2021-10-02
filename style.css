@@ -33,7 +33,20 @@
 .contactBook {
     display: none;
     /*display: grid;*/
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto 1fr;
     grid-template-columns: 1fr 1fr 1fr;
-
+    grid-template-areas:    "header header header"
+                            "list about add";
+}
+.contactBook__header {
+    grid-area: header;
+}
+.contactBook__list {
+    grid-area: list;
+}
+.contactBook__about {
+    grid-area: about;
+}
+.contactBook__add {
+    grid-area: add;
 }
