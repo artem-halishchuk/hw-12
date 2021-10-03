@@ -1,7 +1,7 @@
 class ListContacts {
-    constructor(selector, getContact) {
+    constructor(selector, bookServices) {
         this.selector = selector;
-        this.getContact = getContact;
+        this.bookServices = bookServices;
         //this.onLogin = () => {}; //обработчик успешного логина. который можно переопределить
         document.addEventListener('DOMContentLoaded', () => {
             this.init();
@@ -17,7 +17,7 @@ class ListContacts {
     }
     showContacts() {
         let items = '';
-        this.getContact.getContacts()
+        this.bookServices.getContacts()
             .then(request => request.contacts)
             .then(contacts => contacts.map(contact => {
                 items += this.createItemListContact(contact).outerHTML;
@@ -35,10 +35,10 @@ class ListContacts {
         this.itemListContact.append(this.itemButton);
         return this.itemListContact;
     }
-    getContactId() {
-        this.container.addEventListener('click', (e) => {
-
-            return e.target.parentElement.dataset.id;
-        })
-    }
+    // getContactId() {
+    //     this.container.addEventListener('click', (e) => {
+    //
+    //         return e.target.parentElement.dataset.id;
+    //     })
+    // }
 }

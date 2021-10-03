@@ -16,16 +16,11 @@
 	<script src="scripts/components/list-contacts.js"></script>
 	<script src="scripts/components/exit-book.js"></script>
 	<script src="scripts/components/AboutContact.js"></script>
+	<script src="scripts/components/AddContact.js"></script>
 	<script>
-		//sessionStorage.setItem('token', '');
 		let userServices = new UserServices();
-		//userServices.getAll().then(users => console.log(users));
 		let loginScreen = new LoginScreenComponent('.contactBook');
-		//loginScreen.hidden(true);
-
 		let unauthorizedScreen = new UnauthorizedScreenComponent('.unauthorized-screen');
-
-
 
 		let registerForm = new RegisterForm('.register-form', userServices);
 		registerForm.onRegister = () => {
@@ -36,9 +31,12 @@
 		let bookServices = new BookServices();
 		let listContacts = new ListContacts('.contactBook-list__items', bookServices);
 
-		let exitBook = new ExitBook('.contactBook-header__exit');
+		let aboutContact = new AboutContact('.contactBook__about', listContacts, bookServices);
 
-		let aboutContact = new AboutContact('.contactBook__about', listContacts);
+		let exitBook = new ExitBook('.contactBook-header__exit', aboutContact);
+
+		let addContact = new AddContact('.contactBook-add__form', bookServices);
+
 		//loginScreen.hidden(true);
 
 		loginForm.onLogin = () => {
@@ -47,12 +45,15 @@
 			bookServices.userName();
 
 			listContacts.showContacts();
-			listContacts.getContactId();
 			exitBook.exit();
 
 			aboutContact.displayBlock();
 			aboutContact.hiddenBlock();
 
+			addContact.choiceType();
+			addContact.onAdd = () => {
+				listContacts.showContacts();
+			}
 
 			// let contact = {
 			// 	type: 'email',
@@ -81,6 +82,7 @@
 		MyPhoneBook
 	</h1>
 </header>
+
 <div class="unauthorized-screen">
 	<div class="row">
 		<div class="row__col">
@@ -150,18 +152,18 @@
 	</div>
 
 	<div class="contactBook__about contactBook-about">
-		<div class="contactBook-about__content">
-			<p class="contactBook-content__name">
-				Имя: <span>Valera</span>
-			</p>
-			<p class="contactBook-content__telephone">
-				Телефон: <a href="tel:+74951111111">+7 (495) 111-11-11</a>
-			</p>
-			<p class="contactBook-content__email">
-				Почта: <a href="mailto:example@gmail.com">example@gmail.com</a>
-			</p>
-		</div>		
-		<button class="contactBook-about__exit">Закрыть</button>
+<!--		<div class="contactBook-about__content">-->
+<!--			<p class="contactBook-content__name">-->
+<!--				Имя: <span>Valera</span>-->
+<!--			</p>-->
+<!--			<p class="contactBook-content__contact">-->
+<!--				Телефон: <a href="tel:+74951111111">+7 (495) 111-11-11</a>-->
+<!--			</p>-->
+<!--			<p class="contactBook-content__contact">-->
+<!--				Почта: <a href="mailto:example@gmail.com">example@gmail.com</a>-->
+<!--			</p>-->
+<!--		</div>-->
+<!--		<button class="contactBook-about__exit">Закрыть</button>-->
 	</div>
 
 	<div class="contactBook__add contactBook-add">
@@ -171,7 +173,7 @@
 			</h3>
 			<div class="contactBook-add__control">
 				<label for="contactBook-add__name">Имя</label>
-				<input type="text" class="contactBook-add__name" id="contactBook-add__name" value="Venia">
+				<input type="text" class="contactBook-add__name" id="contactBook-add__name" placeholder="Введите имя">
 			</div>
 			<div class="contactBook-add__control">
 				<select class="select contactBook-add__select">
@@ -180,12 +182,8 @@
 				</select>
 			</div>
 			<div class="contactBook-add__control">
-				<label for="contactBook-add__phone">телефон</label>
-				<input type="text" class="contactBook-add__phone" id="contactBook-add__phone" value="380958398798">
-			</div>
-			<div class="contactBook-add__control">
-				<label for="contactBook-add__mail">электронная почта</label>
-				<input type="text" class="contactBook-add__mail" id="contactBook-add__mail" value="mail@gmail.com">
+				<input type="text" class="contactBook-add__phone" id="contactBook-add__phone" placeholder="введите телефон">
+				<input type="text" class="contactBook-add__mail" id="contactBook-add__mail" placeholder="введите почту">
 			</div>
 			<div class="contactBook-add__control">
 				<button class="btn contactBook-add__btn">Добавить контакт</button>

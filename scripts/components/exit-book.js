@@ -1,6 +1,7 @@
 class ExitBook {
-    constructor(selector) {
+    constructor(selector, AboutContact) {
         this.selector = selector;
+        this.aboutContact = AboutContact;
         document.addEventListener('DOMContentLoaded', () => {
             this.init();
         });
@@ -13,6 +14,7 @@ class ExitBook {
     }
     exit() {
         this.container.addEventListener('click', () => {
+            this.aboutContact.hiddenBlockExit();
             loginScreen.hidden(true);
             unauthorizedScreen.show(true);
             sessionStorage.setItem('token', '');
