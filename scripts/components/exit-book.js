@@ -16,7 +16,7 @@ class ExitBook {
             loginScreen.hidden(true);
             unauthorizedScreen.show(true);
             sessionStorage.setItem('token', '');
-            //document.querySelector('.contactBook-list__items').innerHTML = '';
+
         })
     }
 }

@@ -16,8 +16,9 @@
 	<script src="scripts/components/list-contacts.js"></script>
 	<script src="scripts/components/exit-book.js"></script>
 	<script>
+		//sessionStorage.setItem('token', '');
 		let userServices = new UserServices();
-		userServices.getAll().then(users => console.log(users));
+		//userServices.getAll().then(users => console.log(users));
 		let loginScreen = new LoginScreenComponent('.contactBook');
 		//loginScreen.hidden(true);
 
@@ -32,21 +33,19 @@
 
 		let loginForm = new LoginForm('.login-form', userServices);
 		let bookServices = new BookServices();
-		let listContacts = new ListContacts('.contactBook-list__items', bookServices.getContacts());
+		let listContacts = new ListContacts('.contactBook-list__items', bookServices);
+
 		let exitBook = new ExitBook('.contactBook-header__exit');
-
-
 
 		//loginScreen.hidden(true);
 
 		loginForm.onLogin = () => {
 			loginScreen.show('grid');
-			//alert('Login OK, it is handler');
 			unauthorizedScreen.hidden(true);
-
 			bookServices.userName();
-			exitBook.exit();
 
+			listContacts.showContacts();
+			exitBook.exit();
 			// let contact = {
 			// 	type: 'email',
 			// 	value: 'Ivan@gmail.com',
@@ -62,16 +61,6 @@
 			// 	else alert('contact added ok');
 			// });
 
-
-			listContacts.showContacts();
-			bookServices.getContacts()
-					.then(request => request.contacts)
-					.then(contacts => contacts.map(contact => {
-						console.log('contacts');
-						console.log(contact)
-					}));
-
-			//bookServices.getAll();
 		};
 
 
@@ -115,11 +104,11 @@
 					<div class="form__body">
 						<div class="form__control">
 							<label for="login_user_login">Login</label>
-							<input type="text" class="input" id="login_user_login" value="12">
+							<input type="text" class="input" id="login_user_login" value="">
 						</div>
 						<div class="form__control">
 							<label for="login_user_password">Password</label>
-							<input type="text" class="input" id="login_user_password" value="12">
+							<input type="text" class="input" id="login_user_password" value="">
 						</div>
 						<div class="form__control">
 							<button class="btn btn_success">Login</button>
@@ -132,12 +121,12 @@
 </div>
 
 <div class="contactBook">
-	<diw class="contactBook__header contactBook-header">
+	<div class="contactBook__header contactBook-header">
 		<h2 class="contactBook-header__title">
 			Пользователь <span class="contactBook-header__user">User</span>
 		</h2>
 		<button class="contactBook-header__exit">Выход</button>
-	</diw>
+	</div>
 
 
 	<div class="contactBook__list contactBook-list">

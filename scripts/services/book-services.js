@@ -19,6 +19,7 @@ class BookServices {
             .then(users => users.map(user => User.create(user)));
     }
     getContacts() {
+        console.log('token getContacts = '+sessionStorage.getItem('token'));
         return fetch(BookServices.BASE_URL + 'contacts', {
             method: 'GET',
             headers: {

@@ -10,22 +10,18 @@ class ListContacts {
     }
     init() {
         this.container = document.querySelector(this.selector);
-
     }
     binds() {
         //this.button.addEventListener('click', () => this.login());
     }
     showContacts() {
-
         let items = '';
-        this.getContact
+        this.getContact.getContacts()
             .then(request => request.contacts)
             .then(contacts => contacts.map(contact => {
                 items += this.createItemListContact(contact.name).outerHTML;
             }))
-            .then(a => {
-                this.container.innerHTML = items;
-            });
+            .then(response => this.container.innerHTML = items);
     }
     createItemListContact(name) {
         this.itemListContact = document.createElement('li');

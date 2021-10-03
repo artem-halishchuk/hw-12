@@ -23,9 +23,11 @@ class LoginForm {
             this.loginInput.value,
             this.passwordInput.value,
         )
-        this.userServices.login(user).then(response => {
+        this.userServices.login(user)
+            .then(response => {
             if(response.status === 'error') this.loginError(response.error);
             else this.successLogin(response); //token = response
+            //sessionStorage.setItem('token', '');
         })
     }
 
