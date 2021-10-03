@@ -14,13 +14,12 @@ class AboutContact {
     displayBlock() {
         this.listContacts.init().addEventListener('click', e => {
             if(e.target.parentElement.matches('li')) {
-                console.log(e.target.parentElement.dataset.id);
                 this.showId = e.target.parentElement.dataset.id;
-                this.container.style.display = 'block';
+
                 this.showContact();
+                this.container.style.display = 'block';
             }
         })
-        //this.showContact();
     }
     hiddenBlock() {
         this.container.addEventListener('click', e => {
@@ -33,16 +32,13 @@ class AboutContact {
         this.container.style.display = 'none';
     }
     showContact() {
-        //let items = '';
         this.bookServices.getContacts()
             .then(request => request.contacts)
             .then(contacts => contacts.map(contact => {
-                //items += this.createItemListContact(contact).outerHTML;
-                if (this.showId == contact.id && contact) {
+                if (this.showId == contact.id) {
                     this.container.innerHTML = this.createContent(contact);
                 }
             }))
-
     }
     createContent(contact) {
         let content = '';

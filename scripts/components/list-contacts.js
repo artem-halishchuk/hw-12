@@ -35,10 +35,4 @@ class ListContacts {
         this.itemListContact.append(this.itemButton);
         return this.itemListContact;
     }
-    // getContactId() {
-    //     this.container.addEventListener('click', (e) => {
-    //
-    //         return e.target.parentElement.dataset.id;
-    //     })
-    // }
 }

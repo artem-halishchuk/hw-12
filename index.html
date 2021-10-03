@@ -19,6 +19,7 @@
 	<script src="scripts/components/AddContact.js"></script>
 	<script>
 		let userServices = new UserServices();
+
 		let loginScreen = new LoginScreenComponent('.contactBook');
 		let unauthorizedScreen = new UnauthorizedScreenComponent('.unauthorized-screen');
 
@@ -26,18 +27,13 @@
 		registerForm.onRegister = () => {
 			alert('Register status OK');
 		};
-
 		let loginForm = new LoginForm('.login-form', userServices);
+
 		let bookServices = new BookServices();
 		let listContacts = new ListContacts('.contactBook-list__items', bookServices);
-
 		let aboutContact = new AboutContact('.contactBook__about', listContacts, bookServices);
-
-		let exitBook = new ExitBook('.contactBook-header__exit', aboutContact);
-
 		let addContact = new AddContact('.contactBook-add__form', bookServices);
-
-		//loginScreen.hidden(true);
+		let exitBook = new ExitBook('.contactBook-header__exit', aboutContact);
 
 		loginForm.onLogin = () => {
 			loginScreen.show('grid');
@@ -56,11 +52,6 @@
 			}
 
 			// let contact = {
-			// 	type: 'email',
-			// 	value: 'Ivan@gmail.com',
-			// 	name: 'Ivan',
-			// }
-			// let contact = {
 			// 	type: 'phone',
 			// 	value: '4646464',
 			// 	name: 'Ivan',
@@ -69,7 +60,6 @@
 			// 	if(response.status === 'error') alert('no added contact');
 			// 	else alert('contact added ok');
 			// });
-
 		};
 
 

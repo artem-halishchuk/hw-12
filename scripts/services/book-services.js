@@ -29,8 +29,6 @@ class BookServices {
             },
         })
             .then(response => response.json());
-            // .then(response => response.contacts)
-            // .then(contacts => contacts.map(contact => Contact.create(contact)));
     }
     addContact(contact) {
         return fetch(UserServices.BASE_URL + 'contacts/add', {
