@@ -15,6 +15,7 @@
 	<script src="scripts/script.js"></script>
 	<script src="scripts/components/list-contacts.js"></script>
 	<script src="scripts/components/exit-book.js"></script>
+	<script src="scripts/components/AboutContact.js"></script>
 	<script>
 		//sessionStorage.setItem('token', '');
 		let userServices = new UserServices();
@@ -37,6 +38,7 @@
 
 		let exitBook = new ExitBook('.contactBook-header__exit');
 
+		let aboutContact = new AboutContact('.contactBook__about', listContacts);
 		//loginScreen.hidden(true);
 
 		loginForm.onLogin = () => {
@@ -45,7 +47,13 @@
 			bookServices.userName();
 
 			listContacts.showContacts();
+			listContacts.getContactId();
 			exitBook.exit();
+
+			aboutContact.displayBlock();
+			aboutContact.hiddenBlock();
+
+
 			// let contact = {
 			// 	type: 'email',
 			// 	value: 'Ivan@gmail.com',
@@ -127,7 +135,6 @@
 		</h2>
 		<button class="contactBook-header__exit">Выход</button>
 	</div>
-
 
 	<div class="contactBook__list contactBook-list">
 		<h3 class="contactBook-list__title">

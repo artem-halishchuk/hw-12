@@ -46,6 +46,7 @@
 }
 .contactBook__about {
     grid-area: about;
+    display: none;
 }
 .contactBook__add {
     grid-area: add;
