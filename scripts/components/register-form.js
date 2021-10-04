@@ -36,12 +36,14 @@ class RegisterForm {
         });
     }
     registerError(text) {
-        alert(text);
+        this.popUp.childNodes[1].innerHTML = text;
+        this.showPopUp();
     }
     successRegister() {
         this.clearForm();
         this.hidden();
         this.onRegister();
+        this.popUp.childNodes[1].innerHTML = 'Учетная запись создана';
         this.showPopUp();
     }
     clearForm() {
@@ -62,11 +64,10 @@ class RegisterForm {
         });
     }
     showPopUp() {
-        this.popUp.childNodes[1].innerHTML = 'Учетная запись создана';
         this.popUp.classList.add("animationPopUp");
         setTimeout(() => {
             this.popUp.classList.remove("animationPopUp");
-        }, 1300);
+        }, 2000);
     }
 
 

@@ -16,6 +16,7 @@ class AddContact {
         this.controlPhone = this.container.querySelector('.contactBook-add__phone');
         this.controlMail = this.container.querySelector('.contactBook-add__mail');
         this.buttonAdd = this.container.querySelector('.contactBook-add__btn');
+        this.popUp = document.body.querySelector('.popup-register');
     }
     binds() {
         this.buttonAdd.addEventListener('click', () => this.addContact());
@@ -41,10 +42,19 @@ class AddContact {
             value: this.typeValue,
             name: this.name.value,
         };
-        this.bookServices.addContact(contact).then(response => {
-            if(response.status === 'error') this.addError(response.error);
-            else this.successAdded();
-        });
+        if(contact.value === '' || contact.name === '') {
+            this.popUp.childNodes[1].innerHTML = 'Заполните все поля для добавления контакта';
+            this.showPopUp();
+            return;
+        }
+        else {
+            this.bookServices.addContact(contact).then(response => {
+                if(response.status === 'error') this.addError(response.error);
+                else this.successAdded();
+            });
+        }
+
+
 
     }
     addError(text) {
@@ -52,12 +62,21 @@ class AddContact {
     }
     successAdded() {
         this.clearForm();
+        this.popUp.childNodes[1].innerHTML = 'Контакт добавлен';
+        this.showPopUp();
         this.onAdd();
     }
     clearForm() {
         this.name.value = '';
         this.controlPhone.value = '';
         this.controlMail.value = '';
+    }
+    showPopUp() {
+        //this.popUp.childNodes[1].innerHTML = 'Учетная запись создана';
+        this.popUp.classList.add("animationPopUp");
+        setTimeout(() => {
+            this.popUp.classList.remove("animationPopUp");
+        }, 1300);
     }
 
 }

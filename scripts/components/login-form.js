@@ -42,7 +42,6 @@ class LoginForm {
         }
 
     }
-
     loginError(text) {
         alert(text);
     }
@@ -60,7 +59,6 @@ class LoginForm {
         this.passwordInput.value = '';
     }
     showRegister() {
-        //alert(12);
         this.buttonShowRegister.addEventListener('click', () => this.registerForm.show());
     }
     showPopUp() {

@@ -131,6 +131,7 @@ header {
 .animationPopUp {
     animation: popUp 2s;
     display: block;
+    z-index: 2;
 }
 .row-register-show {
     animation: block1;
