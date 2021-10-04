@@ -10,27 +10,28 @@ html {
 }
 header {
     display: flex;
+    justify-content: center;
     font-size: 3.5rem;
     margin-top: 20px;
-    /*margin-bottom: 20px;*/
-    justify-content: center;
 }
 .unauthorized-screen {
-    width: 360px;
-
-    justify-content: center;
-    align-items: center;
-}
-.row {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    height: 100vh;
+
+}
+.row {
+    /*flex-grow: 1;*/
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
 }
 .row__col {
     flex-grow: 1;
     padding: 20px;
-}
-.form {
-    box-shadow: 2px 2px 1px 1px #777;
 }
 .form .form__header {
     border-bottom: 1px solid #ccc;
@@ -75,22 +76,45 @@ header {
     grid-area: add;
 }
 /*-------------------*/
+.row-register {
+    /*display: none;*/
+}
 .register-form {
-    display: none;
+    position: absolute;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+.form__header {
+    font-size: 1.5rem;
+    margin-top: 20px;
 }
 /*-------------------*/
 .row-authorization {
-    border: 1px solid black;
-    border-radius: 10px;
+    /*border: 1px solid black;*/
+    /*border-radius: 10px;*/
 }
 .login-form .input {
-    width: 300px;
+    width: 290px;
     height: 44px;
     border-radius: 10px;    
     margin: 5px;
     border: 2px solid rgb(0, 0, 0, 0.1);
     padding: 4px;
     font-size: 2rem;
+}
+.btn_register_show, .btn_success {
+    width: 280px;
+}
+.btn_success {
+    margin-top: 12px;
+}
+.btn_register_show {
+    font-weight: 400;
+    width: 240px;
+    padding: 2px;
 }
 button {
     font-size: 1.7rem;
@@ -102,7 +126,19 @@ button {
     margin-bottom: 20px;
 }
 button:hover {
-    background-color: rgba(230, 241, 241, 0.43);
+    background-color: rgba(203, 210, 213, 0.82);
+}
+.login-form .form__body {
+    padding: 14px 24px 0 24px;
+}
+.login-form .form__body {
+    border: 1px solid black;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 50px -29px rgba(34, 60, 80, 0.58);
+    background-color: rgba(228, 231, 232, 0.11);
 }
 .login-form .input:focus, button:focus {
     border: 2px solid rgb(145, 155, 158);
@@ -110,16 +146,4 @@ button:hover {
 .login-form .input:hover {
     border: 2px solid rgb(88, 93, 95);
 }
-
-/*.login-form .input:active {
-    border: 2px solid rgb(201, 25, 25);
-}*/
 /*---------------------------*/
-.register-form {
-    position: absolute;
-    background-color: white;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-}

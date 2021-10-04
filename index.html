@@ -23,7 +23,7 @@
 		let loginScreen = new LoginScreenComponent('.contactBook');
 		let unauthorizedScreen = new UnauthorizedScreenComponent('.unauthorized-screen');
 
-		let registerForm = new RegisterForm('.register-form', userServices);
+		let registerForm = new RegisterForm('.row-register', userServices);//register-form
 		registerForm.onRegister = () => {
 			alert('Register status OK');
 		};
@@ -68,13 +68,14 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="header">
-	<h1 class="header__logo">
-		MyPhoneBook
-	</h1>
-</header>
+
 
 <div class="unauthorized-screen">
+	<header class="header">
+		<h1 class="header__logo">
+			MyPhoneBook
+		</h1>
+	</header>
 	<div class="row">
 		<div class="row__col row-authorization">
 			<div class="form">
@@ -88,8 +89,9 @@
 							<!-- <label for="login_user_password">Password</label> -->
 							<input type="password" class="input" id="login_user_password" value="" placeholder="Пароль" >
 						</div>
+
 						<div class="form__control">
-							<button type="submit" class="btn btn_success">Войти</button>
+							<button type="submit" class="btn btn_success">Войти в учетную запись</button>
 						</div>
 						<div class="form__control">
 							<button type="text" class="btn btn_register_show">Создать учетную запись</button>
