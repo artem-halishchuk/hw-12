@@ -51,7 +51,6 @@ class RegisterForm {
     }
     show() {
         this.container.style.display = 'block';
-        //this.container.classList.add("row-register-show");
     }
     hidden() {
         this.container.style.display = 'none';

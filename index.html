@@ -29,7 +29,6 @@
 		};
 
 		let loginForm = new LoginForm('.login-form', userServices, registerForm);
-		// loginForm.showRegister();
 
 		let bookServices = new BookServices();
 		let listContacts = new ListContacts('.contactBook-list__items', bookServices);
@@ -52,21 +51,7 @@
 			addContact.onAdd = () => {
 				listContacts.showContacts();
 			}
-
-			// let contact = {
-			// 	type: 'phone',
-			// 	value: '4646464',
-			// 	name: 'Ivan',
-			// }
-			// bookServices.addContact(contact).then(response => {
-			// 	if(response.status === 'error') alert('no added contact');
-			// 	else alert('contact added ok');
-			// });
 		};
-
-
-
-
 	</script>
 	<link rel="stylesheet" href="style.css">
 </head>
