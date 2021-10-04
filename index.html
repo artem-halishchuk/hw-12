@@ -25,10 +25,11 @@
 
 		let registerForm = new RegisterForm('.row-register', userServices);//register-form
 		registerForm.onRegister = () => {
-			alert('Register status OK');
+			//alert('Register status OK');
 		};
+
 		let loginForm = new LoginForm('.login-form', userServices, registerForm);
-		//loginForm.showRegister();
+		// loginForm.showRegister();
 
 		let bookServices = new BookServices();
 		let listContacts = new ListContacts('.contactBook-list__items', bookServices);
@@ -64,11 +65,15 @@
 		};
 
 
+
+
 	</script>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="popup-register">
+	<p></p>
+</div>
 
 <div class="unauthorized-screen">
 	<header class="header">
@@ -105,7 +110,7 @@
 				<div class="form__header">
 					Создать учетную запись
 				</div>
-				<button class="btn btn_closed">Закрыть</button>
+				<button class="btn btn_closed"></button>
 				<div class="form__body">
 					<div class="form__control">
 <!--						<label for="register_user_login">Login</label>-->
@@ -123,7 +128,6 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
 </div>
 
@@ -169,22 +173,20 @@
 				Добавить контакт
 			</h3>
 			<div class="contactBook-add__control">
-				<label for="contactBook-add__name">Имя</label>
-				<input type="text" class="contactBook-add__name" id="contactBook-add__name" placeholder="Введите имя">
+<!--				<label for="contactBook-add__name">Имя</label>-->
+				<input type="text" class="contactBook-add__name input" id="contactBook-add__name" placeholder="Введите имя">
 			</div>
 			<div class="contactBook-add__control">
-				<select class="select contactBook-add__select">
+				<select class="select contactBook-add__select input">
 					<option value="phone">телефон</option>
 					<option value="email">электронная почта</option>
 				</select>
 			</div>
 			<div class="contactBook-add__control">
-				<input type="text" class="contactBook-add__phone" id="contactBook-add__phone" placeholder="введите телефон">
-				<input type="text" class="contactBook-add__mail" id="contactBook-add__mail" placeholder="введите почту">
+				<input type="text" class="contactBook-add__phone input" id="contactBook-add__phone" placeholder="Введите телефон">
+				<input type="text" class="contactBook-add__mail input" id="contactBook-add__mail" placeholder="Введите почту">
 			</div>
-			<div class="contactBook-add__control">
-				<button class="btn contactBook-add__btn">Добавить контакт</button>
-			</div>
+			<button class="btn contactBook-add__btn">Добавить контакт</button>
 		</div>
 	</div>
 </div>

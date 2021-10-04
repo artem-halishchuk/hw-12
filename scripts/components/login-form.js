@@ -15,6 +15,7 @@ class LoginForm {
         this.passwordInput = this.container.querySelector('.login-form #login_user_password');
         this.button = this.container.querySelector('.login-form button');
         this.buttonShowRegister = this.container.querySelector('.btn_register_show');
+        this.popUp = document.body.querySelector('.popup-register');
         this.showRegister();
     }
     binds() {
@@ -26,12 +27,20 @@ class LoginForm {
             this.loginInput.value,
             this.passwordInput.value,
         )
-        this.userServices.login(user)
-            .then(response => {
-            if(response.status === 'error') this.loginError(response.error);
-            else this.successLogin(response); //token = response
-            //sessionStorage.setItem('token', '');
-        })
+        if(this.loginInput.value === '' || this.passwordInput.value === '') {
+            //alert('Заполните все для взода.');
+            this.showPopUp();
+            return;
+        }
+        else {
+            this.userServices.login(user)
+                .then(response => {
+                    if(response.status === 'error') this.loginError(response.error);
+                    else this.successLogin(response); //token = response
+                    //sessionStorage.setItem('token', '');
+                })
+        }
+
     }
 
     loginError(text) {
@@ -53,5 +62,12 @@ class LoginForm {
     showRegister() {
         //alert(12);
         this.buttonShowRegister.addEventListener('click', () => this.registerForm.show());
+    }
+    showPopUp() {
+        this.popUp.childNodes[1].innerHTML = 'Заполните все поля для входа';
+        this.popUp.classList.add("animationPopUp");
+        setTimeout(() => {
+            this.popUp.classList.remove("animationPopUp");
+        }, 2000);
     }
 }

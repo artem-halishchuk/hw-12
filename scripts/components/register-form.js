@@ -15,7 +15,10 @@ class RegisterForm {
         this.bornInput = this.container.querySelector('#register_user_born');
         this.button = this.container.querySelector('.register-form .btn_success');
         this.buttonClosed = this.container.querySelector('.register-form .btn_closed');
+        this.popUp = document.body.querySelector('.popup-register');
         this.hiddenHandler();
+        //this.hidden();
+        //this.show();
     }
     binds() {
         this.button.addEventListener('click', () => this.register());
@@ -37,7 +40,9 @@ class RegisterForm {
     }
     successRegister() {
         this.clearForm();
+        this.hidden();
         this.onRegister();
+        this.showPopUp();
     }
     clearForm() {
         this.loginInput.value = '';
@@ -46,12 +51,23 @@ class RegisterForm {
     }
     show() {
         this.container.style.display = 'block';
+        //this.container.classList.add("row-register-show");
     }
     hidden() {
         this.container.style.display = 'none';
+
     }
-    hiddenHandler(handler) {
-        this.buttonClosed.addEventListener('click', () => this.container.style.display = 'none');
+    hiddenHandler() {
+        this.buttonClosed.addEventListener('click', () => {
+            this.container.style.display = 'none'
+        });
+    }
+    showPopUp() {
+        this.popUp.childNodes[1].innerHTML = 'Учетная запись создана';
+        this.popUp.classList.add("animationPopUp");
+        setTimeout(() => {
+            this.popUp.classList.remove("animationPopUp");
+        }, 1300);
     }
 
 

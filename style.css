@@ -76,19 +76,19 @@ header {
 }
 /*-------------------*/
 .row-register {
-    /*display: none;*/
+    display: none;
     position: absolute;
     background-color: white;
-    /*width: 100vw;*/
-    /*height: 100vh;*/
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     background-color: rgba(65, 72, 85, 0.73);
+    /*opacity: 0;*/
 }
 .register-form, .form__body {
-    background-color: #cccccc;
+    background-color: #f1f1f1;
+
     width: 320px;
     display: flex;
     flex-direction: column;
@@ -101,27 +101,75 @@ header {
 }
 .btn_closed {
     position: absolute;
-    right: 0;
+    right: 5px;
     top: 5px;
     background-color: transparent;
+    background-image: url("img/closed.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
 }
 .form__header {
-    font-size: 2.3rem;
+    font-size: 2.1rem;
     margin-top: 10px;
     display: inline-flex;
     justify-content: space-between;
 }
+.popup-register {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 2.5rem;
+    text-align: center;
+    background-color: rgba(65, 72, 85, 0.73);
+    opacity: 0;
+}
+
+.animationPopUp {
+    animation: popUp 2s;
+    display: block;
+}
+.row-register-show {
+    animation: block1;
+}
+@keyframes popUp {
+    0% { opacity: 0; }
+    10% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes block1 {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes none {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+.popup-register > p {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120px;
+    padding: 30px;
+    width: 320px;
+    background-color: #cccccc;
+    left: calc(50% - 160px);
+}
+
 /*-------------------*/
 .row-authorization {
     /*border: 1px solid black;*/
     /*border-radius: 10px;*/
 }
-.login-form .input, .register-form .input {
+.login-form .input, .register-form .input, .input {
     width: 290px;
     height: 44px;
     border-radius: 10px;    
     margin: 5px;
-    border: 2px solid rgb(0, 0, 0, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.1);
     padding: 4px;
     font-size: 2rem;
 }
@@ -141,12 +189,12 @@ button {
     font-weight: 700;
     border: 2px solid transparent;
     border-radius: 5px;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(224, 224, 224);
     padding: 6px;
     margin-bottom: 20px;
 }
 button:hover {
-    background-color: rgba(203, 210, 213, 0.82);
+    background-color: rgba(191, 197, 201, 0.82);
 }
 .login-form .form__body {
     padding: 14px 24px 0 24px;
@@ -167,3 +215,49 @@ button:hover {
     border: 2px solid rgb(88, 93, 95);
 }
 /*---------------------------*/
+.contactBook {
+    padding: 20px;
+    font-size: 2rem;
+}
+.contactBook__header {
+    display: flex;
+    justify-content: space-between;
+}
+.contactBook-header__title {
+    font-size: 2rem;
+}
+.contactBook-list__title {
+    text-align: center;
+}
+.contactBook-list__list {
+    margin-top: 10px;
+}
+.contactBook__list,
+.contactBook__about,
+.contactBook__add {
+    padding: 10px;
+}
+.contactBook-list__items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.contactBook-list__item button {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.contactBook__about {
+    position: relative;
+}
+.contactBook-about__exit {
+    margin: 0;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+.contactBook-add__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
