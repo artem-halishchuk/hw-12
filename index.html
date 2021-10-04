@@ -27,13 +27,14 @@
 		registerForm.onRegister = () => {
 			alert('Register status OK');
 		};
-		let loginForm = new LoginForm('.login-form', userServices);
+		let loginForm = new LoginForm('.login-form', userServices, registerForm);
+		//loginForm.showRegister();
 
 		let bookServices = new BookServices();
 		let listContacts = new ListContacts('.contactBook-list__items', bookServices);
 		let aboutContact = new AboutContact('.contactBook__about', listContacts, bookServices);
 		let addContact = new AddContact('.contactBook-add__form', bookServices);
-		let exitBook = new ExitBook('.contactBook-header__exit', aboutContact);
+		let exitBook = new ExitBook('.contactBook-header__exit', aboutContact, registerForm);
 
 		loginForm.onLogin = () => {
 			loginScreen.show('grid');
@@ -75,48 +76,55 @@
 
 <div class="unauthorized-screen">
 	<div class="row">
-		<div class="row__col">
+		<div class="row__col row-authorization">
+			<div class="form">
+				<div class="form login-form">
+					<div class="form__body">
+						<div class="form__control">
+							<!-- <label for="login_user_login">Login</label> -->
+							<input type="text" class="input" id="login_user_login" value="" placeholder="Ваш логин">
+						</div>
+						<div class="form__control">
+							<!-- <label for="login_user_password">Password</label> -->
+							<input type="password" class="input" id="login_user_password" value="" placeholder="Пароль" >
+						</div>
+						<div class="form__control">
+							<button type="submit" class="btn btn_success">Войти</button>
+						</div>
+						<div class="form__control">
+							<button type="text" class="btn btn_register_show">Создать учетную запись</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row__col row-register">
 			<div class="form register-form">
-				<div class="form__header">Register</div>
+				<div class="form__header">Создать новую учетную запись</div>
+				<div class="form__control">
+					<button class="btn btn_closed">Закрыть</button>
+				</div>
 				<div class="form__body">
+				
 					<div class="form__control">
 						<label for="register_user_login">Login</label>
-						<input type="text" class="input" id="register_user_login" value="">
+						<input type="text" class="input" id="register_user_login" value="" required >
 					</div>
 					<div class="form__control">
 						<label for="register_user_password">Password</label>
-						<input type="text" class="input" id="register_user_password" value="1111">
+						<input type="text" class="input" id="register_user_password" value="" required >
 					</div>
 					<div class="form__control">
 						<label for="register_user_born">Birth day</label>
-						<input type="text" class="input" id="register_user_born" value="2000-01-01">
+						<input type="text" class="input" id="register_user_born" value="" required >
 					</div>
 					<div class="form__control">
-						<button class="btn btn_success">Register</button>
+						<button class="btn btn_success">Зарегистрироваться</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row__col">
-			<div class="form">
-				<div class="form login-form">
-					<div class="form__header">Login</div>
-					<div class="form__body">
-						<div class="form__control">
-							<label for="login_user_login">Login</label>
-							<input type="text" class="input" id="login_user_login" value="">
-						</div>
-						<div class="form__control">
-							<label for="login_user_password">Password</label>
-							<input type="text" class="input" id="login_user_password" value="">
-						</div>
-						<div class="form__control">
-							<button class="btn btn_success">Login</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 </div>
 

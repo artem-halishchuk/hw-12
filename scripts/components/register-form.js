@@ -13,7 +13,9 @@ class RegisterForm {
         this.loginInput = this.container.querySelector('#register_user_login');
         this.passwordInput = this.container.querySelector('#register_user_password');
         this.bornInput = this.container.querySelector('#register_user_born');
-        this.button = this.container.querySelector('.register-form button');
+        this.button = this.container.querySelector('.register-form .btn_success');
+        this.buttonClosed = this.container.querySelector('.register-form .btn_closed');
+        this.hiddenHandler();
     }
     binds() {
         this.button.addEventListener('click', () => this.register());
@@ -42,4 +44,17 @@ class RegisterForm {
         this.bornInput.value = '';
         this.passwordInput.value = '';
     }
+    show() {
+        this.container.style.display = 'block';
+    }
+    hidden() {
+        this.container.style.display = 'none';
+    }
+    hiddenHandler(handler) {
+        this.buttonClosed.addEventListener('click', () => this.container.style.display = 'none');
+    }
+
+
+
+
 }

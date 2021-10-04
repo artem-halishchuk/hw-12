@@ -1,6 +1,29 @@
 @import url(reset.css);
+* {
+  box-sizing: border-box;
+}
+html {
+  color: black;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 10px;
+  /*background-color: #f7f6f5;*/
+}
+header {
+    display: flex;
+    font-size: 3.5rem;
+    margin-top: 20px;
+    /*margin-bottom: 20px;*/
+    justify-content: center;
+}
+.unauthorized-screen {
+    width: 360px;
+
+    justify-content: center;
+    align-items: center;
+}
 .row {
     display: flex;
+    flex-direction: column;
 }
 .row__col {
     flex-grow: 1;
@@ -50,4 +73,53 @@
 }
 .contactBook__add {
     grid-area: add;
+}
+/*-------------------*/
+.register-form {
+    display: none;
+}
+/*-------------------*/
+.row-authorization {
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.login-form .input {
+    width: 300px;
+    height: 44px;
+    border-radius: 10px;    
+    margin: 5px;
+    border: 2px solid rgb(0, 0, 0, 0.1);
+    padding: 4px;
+    font-size: 2rem;
+}
+button {
+    font-size: 1.7rem;
+    font-weight: 700;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background-color: rgb(240, 240, 240);
+    padding: 6px;
+    margin-bottom: 20px;
+}
+button:hover {
+    background-color: rgba(230, 241, 241, 0.43);
+}
+.login-form .input:focus, button:focus {
+    border: 2px solid rgb(145, 155, 158);
+}
+.login-form .input:hover {
+    border: 2px solid rgb(88, 93, 95);
+}
+
+/*.login-form .input:active {
+    border: 2px solid rgb(201, 25, 25);
+}*/
+/*---------------------------*/
+.register-form {
+    position: absolute;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
 }

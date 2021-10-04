@@ -1,7 +1,8 @@
 class LoginForm {
-    constructor(selector, userServices) {
+    constructor(selector, userServices, registerForm) {
         this.selector = selector;
         this.userServices = userServices;
+        this.registerForm = registerForm;
         this.onLogin = () => {}; //обработчик успешного логина. который можно переопределить
         document.addEventListener('DOMContentLoaded', () => {
             this.init();
@@ -13,6 +14,8 @@ class LoginForm {
         this.loginInput = this.container.querySelector('.login-form #login_user_login');
         this.passwordInput = this.container.querySelector('.login-form #login_user_password');
         this.button = this.container.querySelector('.login-form button');
+        this.buttonShowRegister = this.container.querySelector('.btn_register_show');
+        this.showRegister();
     }
     binds() {
         this.button.addEventListener('click', () => this.login());
@@ -46,5 +49,9 @@ class LoginForm {
     clearForm() {
         this.loginInput.value = '';
         this.passwordInput.value = '';
+    }
+    showRegister() {
+        //alert(12);
+        this.buttonShowRegister.addEventListener('click', () => this.registerForm.show());
     }
 }

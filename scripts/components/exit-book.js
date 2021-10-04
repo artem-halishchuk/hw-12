@@ -1,7 +1,8 @@
 class ExitBook {
-    constructor(selector, AboutContact) {
+    constructor(selector, AboutContact, registerForm) {
         this.selector = selector;
         this.aboutContact = AboutContact;
+        this.registerForm = registerForm;
         document.addEventListener('DOMContentLoaded', () => {
             this.init();
         });
@@ -18,6 +19,7 @@ class ExitBook {
             loginScreen.hidden(true);
             unauthorizedScreen.show(true);
             sessionStorage.setItem('token', '');
+            this.registerForm.hidden();
 
         })
     }
