@@ -19,38 +19,25 @@
 	<script src="scripts/components/AddContact.js"></script>
 	<script>
 		let userServices = new UserServices();
-
 		let loginScreen = new LoginScreenComponent('.contactBook');
 		let unauthorizedScreen = new UnauthorizedScreenComponent('.unauthorized-screen');
-
 		let registerForm = new RegisterForm('.row-register', userServices);//register-form
-		registerForm.onRegister = () => {
-			//alert('Register status OK');
-		};
-
 		let loginForm = new LoginForm('.login-form', userServices, registerForm);
-
 		let bookServices = new BookServices();
 		let listContacts = new ListContacts('.contactBook-list__items', bookServices);
 		let aboutContact = new AboutContact('.contactBook__about', listContacts, bookServices);
 		let addContact = new AddContact('.contactBook-add__form', bookServices);
 		let exitBook = new ExitBook('.contactBook-header__exit', aboutContact, registerForm);
-
 		loginForm.onLogin = () => {
 			loginScreen.show('grid');
 			unauthorizedScreen.hidden(true);
 			bookServices.userName();
-
 			listContacts.showContacts();
 			exitBook.exit();
-
 			aboutContact.displayBlock();
 			aboutContact.hiddenBlock();
-
 			addContact.choiceType();
-			addContact.onAdd = () => {
-				listContacts.showContacts();
-			}
+			addContact.onAdd = () => listContacts.showContacts();
 		};
 	</script>
 	<link rel="stylesheet" href="style.css">

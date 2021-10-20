@@ -195,6 +195,7 @@ button {
     margin-bottom: 20px;
 }
 button:hover {
+    border: 2px solid rgb(145, 155, 158);
     background-color: rgba(191, 197, 201, 0.82);
 }
 .login-form .form__body {
