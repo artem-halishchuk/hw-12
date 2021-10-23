@@ -9,7 +9,7 @@ class ListContacts {
         });
     }
     init() {
-        this.container = document.querySelector(this.selector);
+        this.container = $(this.selector)[0];
         return this.container;
     }
     binds() {

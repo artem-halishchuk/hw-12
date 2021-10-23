@@ -1,4 +1,5 @@
-$(document).ready(() => {
+/*let doc = $(document);
+doc.ready(() => {
 	let users = [];
 
     class User {
@@ -61,7 +62,8 @@ $(document).ready(() => {
             buttonAdd.classList.add('button', 'form-add');
             buttonAdd.innerHTML = 'add';
             formWrapper.append(buttonAdd);
-            buttonAdd.addEventListener('click', () => {
+
+            $(buttonAdd).click(() => {
                 if(input.value.trim() === '') {
                     alert('Заполните поле имени.');
                     return;
@@ -217,4 +219,4 @@ $(document).ready(() => {
     let getBlockApp = document.querySelector('.app');
 
 
-})
+})*/

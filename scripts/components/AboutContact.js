@@ -4,32 +4,35 @@ class AboutContact {
         this.listContacts = listContacts; //class
         this.bookServices = bookServices;
         this.showId = null;
-        document.addEventListener('DOMContentLoaded', () => {
-            this.init();
-        });
+        this.doc = $(document);
+        this.doc.ready(() => this.init());
     }
     init() {
-        this.container = document.querySelector(this.selector);
+        this.container = $(this.selector)[0];
+        //this.container = document.querySelector(this.selector);
     }
     displayBlock() {
-        this.listContacts.init().addEventListener('click', e => {
-            if(e.target.parentElement.matches('li')) {
-                this.showId = e.target.parentElement.dataset.id;
-
+        $(this.listContacts.init()).on('click', e => {
+            let target = $(e.target);
+            if(target.parent('li')) {
+                this.showId = target.parent('li').data('id');
                 this.showContact();
-                this.container.style.display = 'block';
+                $(this.selector).css({'display': 'block'});
+                this.hiddenBlockExit();
             }
         })
     }
     hiddenBlock() {
-        this.container.addEventListener('click', e => {
-            if(e.target.matches('.contactBook-about__exit' || '.contactBook-header__exit')) {
-                this.container.style.display = 'none';
+        $(this.selector).on('click', e => {
+            let target = $(e.target);
+            if(target.attr('class') === 'contactBook-about__exit' || target.attr('class') === 'contactBook-header__exit') {
+                $(this.selector).css({'display': 'none'});
             }
         })
+        //$('.contactBook-about__exit').on('click', function() {alert(12)});
     }
     hiddenBlockExit() {
-        this.container.style.display = 'none';
+        $(this.selector).css({'display': 'block'});
     }
     showContact() {
         this.bookServices.getContacts()
