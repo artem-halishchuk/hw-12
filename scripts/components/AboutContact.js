@@ -39,7 +39,7 @@ class AboutContact {
             .then(request => request.contacts)
             .then(contacts => contacts.map(contact => {
                 if (this.showId == contact.id) {
-                    this.container.innerHTML = this.createContent(contact);
+                    this.createContent(contact)
                 }
             }))
     }
@@ -75,6 +75,10 @@ class AboutContact {
         this.contactBookAboutExit = document.createElement('button');
         this.contactBookAboutExit.classList.add('contactBook-about__exit');
         this.contactBookAboutExit.innerHTML = 'Выход';
+
+        this.container.innerHTML = '';
+        this.container.append(this.contactBookAboutContent);
+        this.container.append(this.contactBookAboutExit);
 
         content += this.contactBookAboutContent.outerHTML;
         content += this.contactBookAboutExit.outerHTML;

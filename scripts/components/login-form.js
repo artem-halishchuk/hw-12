@@ -37,7 +37,6 @@ class LoginForm {
                 .then(response => {
                     if(response.status === 'error') this.loginError(response.error);
                     else this.successLogin(response); //token = response
-                    //sessionStorage.setItem('token', '');
                 })
         }
 
