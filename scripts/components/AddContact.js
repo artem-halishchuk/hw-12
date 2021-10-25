@@ -4,46 +4,47 @@ class AddContact {
         this.bookServices = bookServices;
         this.typeValue = null;
         this.onAdd = () => {}; //обработчик успешного логина. который можно переопределить
-        document.addEventListener('DOMContentLoaded', () => {
+        this.doc = $(document);
+        this.doc.ready(() => {
             this.init();
             this.binds();
         });
     }
     init() {
-        this.container = document.querySelector(this.selector);
-        this.name = this.container.querySelector('.contactBook-add__name');
-        this.typeSwitcher = this.container.querySelector('.contactBook-add__select');
-        this.controlPhone = this.container.querySelector('.contactBook-add__phone');
-        this.controlMail = this.container.querySelector('.contactBook-add__mail');
-        this.buttonAdd = this.container.querySelector('.contactBook-add__btn');
-        this.popUp = document.body.querySelector('.popup-register');
+        this.container = $(this.selector);
+        this.name = $('.contactBook-add__name');
+        this.typeSwitcher = $('.contactBook-add__select');
+        this.controlPhone = $('.contactBook-add__phone');
+        this.controlMail = $('.contactBook-add__mail');
+        this.buttonAdd = $('.contactBook-add__btn');
+        this.popUp = $('.popup-register');
     }
     binds() {
-        this.buttonAdd.addEventListener('click', () => this.addContact());
+        this.buttonAdd.on('click', () => this.addContact());
     }
     choiceType() {
-        if (this.typeSwitcher.value === 'phone') {
-            this.controlPhone.style.display = 'block';
-            this.controlMail.style.display = 'none';
+        if (this.typeSwitcher.val() === 'phone') {
+            this.controlPhone.css({'display': 'block'});
+            this.controlMail.css({'display': 'none'});
         }
         else {
-            this.controlPhone.style.display = 'none';
-            this.controlMail.style.display = 'block';
+            this.controlPhone.css({'display': 'none'});
+            this.controlMail.css({'display': 'block'});
         }
-        this.typeSwitcher.addEventListener('click', () => {
+        this.typeSwitcher.on('click', () => {
             this.choiceType();
         })
     }
     addContact() {
-        if (this.typeSwitcher.value === 'phone') this.typeValue = this.controlPhone.value;
-        else this.typeValue = this.controlMail.value;
+        if (this.typeSwitcher.val() === 'phone') this.typeValue = this.controlPhone.val();
+        else this.typeValue = this.controlMail.val();
         let contact = {
-            type: this.typeSwitcher.value,
+            type: this.typeSwitcher.val(),
             value: this.typeValue,
-            name: this.name.value,
+            name: this.name.val(),
         };
         if(contact.value === '' || contact.name === '') {
-            this.popUp.childNodes[1].innerHTML = 'Заполните все поля для добавления контакта';
+            this.popUp.find('p').html('Заполните все поля для добавления контакта');
             this.showPopUp();
             return;
         }
@@ -53,30 +54,25 @@ class AddContact {
                 else this.successAdded();
             });
         }
-
-
-
     }
     addError(text) {
         alert(text);
     }
     successAdded() {
         this.clearForm();
-        this.popUp.childNodes[1].innerHTML = 'Контакт добавлен';
+        this.popUp.find('p').html('Контакт добавлен');
         this.showPopUp();
         this.onAdd();
     }
     clearForm() {
-        this.name.value = '';
-        this.controlPhone.value = '';
-        this.controlMail.value = '';
+        this.name.val('');
+        this.controlPhone.val('');
+        this.controlMail.val('');
     }
     showPopUp() {
-        //this.popUp.childNodes[1].innerHTML = 'Учетная запись создана';
-        this.popUp.classList.add("animationPopUp");
+        this.popUp.addClass("animationPopUp");
         setTimeout(() => {
-            this.popUp.classList.remove("animationPopUp");
+            this.popUp.removeClass("animationPopUp");
         }, 1300);
     }
-
 }

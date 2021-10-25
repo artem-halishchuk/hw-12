@@ -3,24 +3,24 @@ class ExitBook {
         this.selector = selector;
         this.aboutContact = AboutContact;
         this.registerForm = registerForm;
-        document.addEventListener('DOMContentLoaded', () => {
+        this.doc = $(document);
+        this.doc.ready(() => {
             this.init();
         });
     }
     init() {
-        this.container = document.querySelector(this.selector);
+        this.container = $(this.selector);
         let unauthorizedScreen = new UnauthorizedScreenComponent('.unauthorized-screen');
         let loginScreen = new LoginScreenComponent('.contactBook');
 
     }
     exit() {
-        this.container.addEventListener('click', () => {
-            this.aboutContact.hiddenBlockExit();
+        this.container.on('click', () => {
+            this.aboutContact.hiddenBlockExitLogOut();
             loginScreen.hidden(true);
             unauthorizedScreen.show(true);
             sessionStorage.setItem('token', '');
             this.registerForm.hidden();
-
         })
     }
 }

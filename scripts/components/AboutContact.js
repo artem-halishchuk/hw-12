@@ -8,8 +8,7 @@ class AboutContact {
         this.doc.ready(() => this.init());
     }
     init() {
-        this.container = $(this.selector)[0];
-        //this.container = document.querySelector(this.selector);
+        this.container = $(this.selector);
     }
     displayBlock() {
         $(this.listContacts.init()).on('click', e => {
@@ -17,29 +16,31 @@ class AboutContact {
             if(target.parent('li')) {
                 this.showId = target.parent('li').data('id');
                 this.showContact();
-                $(this.selector).css({'display': 'block'});
+                this.container.css({'display': 'block'});
                 this.hiddenBlockExit();
             }
         })
     }
     hiddenBlock() {
-        $(this.selector).on('click', e => {
+        this.container.on('click', e => {
             let target = $(e.target);
             if(target.attr('class') === 'contactBook-about__exit' || target.attr('class') === 'contactBook-header__exit') {
-                $(this.selector).css({'display': 'none'});
+                this.container.css({'display': 'none'});
             }
         })
-        //$('.contactBook-about__exit').on('click', function() {alert(12)});
     }
     hiddenBlockExit() {
-        $(this.selector).css({'display': 'block'});
+        this.container.css({'display': 'block'});
+    }
+    hiddenBlockExitLogOut() {
+        this.container.css({'display': 'none'});
     }
     showContact() {
         this.bookServices.getContacts()
             .then(request => request.contacts)
             .then(contacts => contacts.map(contact => {
                 if (this.showId == contact.id) {
-                    this.createContent(contact)
+                    this.container.html(this.createContent(contact));
                 }
             }))
     }
@@ -75,10 +76,6 @@ class AboutContact {
         this.contactBookAboutExit = document.createElement('button');
         this.contactBookAboutExit.classList.add('contactBook-about__exit');
         this.contactBookAboutExit.innerHTML = 'Выход';
-
-        this.container.innerHTML = '';
-        this.container.append(this.contactBookAboutContent);
-        this.container.append(this.contactBookAboutExit);
 
         content += this.contactBookAboutContent.outerHTML;
         content += this.contactBookAboutExit.outerHTML;

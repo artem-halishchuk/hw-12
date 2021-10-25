@@ -2,18 +2,10 @@ class ListContacts {
     constructor(selector, bookServices) {
         this.selector = selector;
         this.bookServices = bookServices;
-        //this.onLogin = () => {}; //обработчик успешного логина. который можно переопределить
-        document.addEventListener('DOMContentLoaded', () => {
-            this.init();
-            this.binds();
-        });
     }
     init() {
-        this.container = $(this.selector)[0];
+        this.container = $(this.selector);
         return this.container;
-    }
-    binds() {
-        //this.button.addEventListener('click', () => this.login());
     }
     showContacts() {
         let items = '';
@@ -21,9 +13,9 @@ class ListContacts {
             .then(request => request.contacts)
             .then(contacts => contacts.map(contact => {
                 items += this.createItemListContact(contact).outerHTML;
-                console.log(contacts);
+                //console.log(contacts);
             }))
-            .then(response => this.container.innerHTML = items);
+            .then(response => this.container.html(items));
     }
     createItemListContact(contact) {
         this.itemListContact = document.createElement('li');
