@@ -12,8 +12,7 @@ class ListContacts {
         this.bookServices.getContacts()
             .then(request => request.contacts)
             .then(contacts => contacts.map(contact => {
-                items += this.createItemListContact(contact).outerHTML;
-                //console.log(contacts);
+                items += this.createItemListContact(contact);
             }))
             .then(response => this.container.html(items));
     }
@@ -25,6 +24,6 @@ class ListContacts {
         this.itemButton.classList.add('contactBook-item__button');
         this.itemButton.innerHTML = contact.name;
         this.itemListContact.append(this.itemButton);
-        return this.itemListContact;
+        return this.itemListContact.outerHTML;
     }
 }

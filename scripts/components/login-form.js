@@ -4,30 +4,34 @@ class LoginForm {
         this.userServices = userServices;
         this.registerForm = registerForm;
         this.onLogin = () => {}; //обработчик успешного логина. который можно переопределить
-        document.addEventListener('DOMContentLoaded', () => {
+        this.doc = $(document);
+        this.doc.ready(() => {
             this.init();
             this.binds();
         });
     }
     init() {
-        this.container = document.querySelector(this.selector);
-        this.loginInput = this.container.querySelector('.login-form #login_user_login');
-        this.passwordInput = this.container.querySelector('.login-form #login_user_password');
-        this.button = this.container.querySelector('.login-form button');
-        this.buttonShowRegister = this.container.querySelector('.btn_register_show');
-        this.popUp = document.body.querySelector('.popup-register');
+        this.container = $(this.selector);
+        this.loginInput = $('.login-form #login_user_login');
+        this.passwordInput = $('.login-form #login_user_password');
+        this.button = $('.login-form button');
+        this.buttonShowRegister = $('.btn_register_show');
+        this.popUp = $('.popup-register');
         this.showRegister();
     }
     binds() {
-        this.button.addEventListener('click', () => this.login());
+        this.button.on('click', e => {
+            if($(e.target).attr('class') !== 'btn btn_success') return;
+            this.login();
+        });
 
     }
     login() {
         let user = new User(
-            this.loginInput.value,
-            this.passwordInput.value,
+            this.loginInput.val(),
+            this.passwordInput.val(),
         )
-        if(this.loginInput.value === '' || this.passwordInput.value === '') {
+        if(this.loginInput.val() === '' || this.passwordInput.val() === '') {
             //alert('Заполните все для взода.');
             this.showPopUp();
             return;
@@ -54,17 +58,18 @@ class LoginForm {
         this.clearForm();
     }
     clearForm() {
-        this.loginInput.value = '';
-        this.passwordInput.value = '';
+        this.loginInput.val('');
+        this.passwordInput.val('');
     }
     showRegister() {
-        this.buttonShowRegister.addEventListener('click', () => this.registerForm.show());
+        this.buttonShowRegister.on('click', () => this.registerForm.show());
     }
     showPopUp() {
-        this.popUp.childNodes[1].innerHTML = 'Заполните все поля для входа';
-        this.popUp.classList.add("animationPopUp");
+        //this.popUp.childNodes[1].innerHTML = 'Заполните все поля для входа';
+        this.popUp.find('p').html('Заполните все поля для входа');
+        this.popUp.addClass("animationPopUp");
         setTimeout(() => {
-            this.popUp.classList.remove("animationPopUp");
+            this.popUp.removeClass("animationPopUp");
         }, 2000);
     }
 }

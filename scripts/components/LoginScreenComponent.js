@@ -1,19 +1,20 @@
 class LoginScreenComponent {
     constructor(selector) {
         this.selector = selector;
-        document.addEventListener('DOMContentLoaded', () => {
+        this.doc = $(document);
+        this.doc.ready(() => {
             this.init();
             this.hidden();
             this.show();
-        })
+        });
     }
     init() {
-        this.container = document.querySelector(this.selector);
+        this.container = $(this.selector);
     }
     hidden(a) {
-        if(a) this.container.style.display = 'none';
+        if(a) this.container.css({'display': 'none'});
     }
     show(a) {
-        if(a) this.container.style.display = a;
+        if(a) this.container.css({'display': a});
     }
 }

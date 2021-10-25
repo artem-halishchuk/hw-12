@@ -3,32 +3,31 @@ class RegisterForm {
         this.selector = selector;
         this.userServices = userServices;
         this.onRegister = () => {}; //обработчик успешной регистр. который можно переопределить
-        document.addEventListener('DOMContentLoaded', () => {
+        this.doc = $(document);
+        this.doc.ready(() => {
             this.init();
             this.binds();
         });
     }
     init() {
-        this.container = document.querySelector(this.selector);
-        this.loginInput = this.container.querySelector('#register_user_login');
-        this.passwordInput = this.container.querySelector('#register_user_password');
-        this.bornInput = this.container.querySelector('#register_user_born');
-        this.button = this.container.querySelector('.register-form .btn_success');
-        this.buttonClosed = this.container.querySelector('.register-form .btn_closed');
-        this.popUp = document.body.querySelector('.popup-register');
+        this.container = $(this.selector);
+        this.loginInput = $('#register_user_login');
+        this.passwordInput = $('#register_user_password');
+        this.bornInput = $('#register_user_born');
+        this.button = $('.register-form .btn_success');
+        this.buttonClosed = $('.register-form .btn_closed');
+        this.popUp = $('.popup-register');
         this.hiddenHandler();
-        //this.hidden();
-        //this.show();
     }
     binds() {
-        this.button.addEventListener('click', () => this.register());
+        this.button.on('click', () => this.register());
     }
     register() {
         let user = new User(
             //важен порядок
-            this.loginInput.value,
-            this.passwordInput.value,
-            this.bornInput.value,
+            this.loginInput.val(),
+            this.passwordInput.val(),
+            this.bornInput.val(),
         )
         this.userServices.register(user).then(response => {
             if(response.status === 'error') this.registerError(response.error);
@@ -36,14 +35,14 @@ class RegisterForm {
         });
     }
     registerError(text) {
-        this.popUp.childNodes[1].innerHTML = text;
+        this.popUp.find('p').html(text);
         this.showPopUp();
     }
     successRegister() {
         this.clearForm();
         this.hidden();
         this.onRegister();
-        this.popUp.childNodes[1].innerHTML = 'Учетная запись создана';
+        this.popUp.find('p').html('Учетная запись создана');
         this.showPopUp();
     }
     clearForm() {
@@ -52,25 +51,21 @@ class RegisterForm {
         this.passwordInput.value = '';
     }
     show() {
-        this.container.style.display = 'block';
+        this.container.css({'display': 'block'});
     }
     hidden() {
-        this.container.style.display = 'none';
+        this.container.css({'display': 'none'});
 
     }
     hiddenHandler() {
-        this.buttonClosed.addEventListener('click', () => {
-            this.container.style.display = 'none'
+        this.buttonClosed.on('click', () => {
+            this.container.css({'display': 'none'});
         });
     }
     showPopUp() {
-        this.popUp.classList.add("animationPopUp");
+        this.popUp.addClass("animationPopUp");
         setTimeout(() => {
-            this.popUp.classList.remove("animationPopUp");
+            this.popUp.removeClass("animationPopUp");
         }, 2000);
     }
-
-
-
-
 }
